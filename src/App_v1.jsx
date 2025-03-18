@@ -1,5 +1,11 @@
-import {createContext, useContext, useState} from 'react'
+import { createContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
+
+import Button from './components/Button'
+import Header from './components/Header'
+import Main from './components/Main'
+import Archive from './components/Archive'
+import Footer from './components/Footer'
 
 function createRandomPost() {  
   return {
@@ -8,15 +14,18 @@ function createRandomPost() {
   };
 }
 
- const PostContext = createContext()
+export const PostContext = createContext()
 
-const PostProvider = ({children}) => {
+function App() {
   const [posts, setPosts] = useState(() =>
     Array.from({ length: 30 }, () => createRandomPost())
   );
   const [searchQuery, setSearchQuery] = useState("");
 
   // Derived state. These are the posts that will actually be displayed
+  const [isFakeDark, setIsFakeDark] = useState(false);
+  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
+
   const searchedPosts =
     searchQuery.length > 0
       ? posts.filter((post) =>
@@ -34,23 +43,36 @@ const PostProvider = ({children}) => {
     setPosts([]);
   }
 
+  function handleFakeDark() {
+    setIsFakeDark((isFakeDark) => !isFakeDark)
+  }
+  
+  useEffect(
+    function () {
+      document.documentElement.classList.toggle("fake-dark-mode");
+    },
+    [isFakeDark]
+  );
+
   return (
-    <PostContext.Provider value={{
+    <PostContext.Provider value={
       posts: searchedPosts,
       onAddPost: handleAddPost,
       onClearPosts: handleClearPosts,
       searchQuery,
       setSearchQuery,
-    }}>
-      {children}
+      isFakeDark,
+      onFakeDark: handleFakeDark
+    }>
+      <section>
+        <Button />
+        <Header />
+        <Main />
+        <Archive />
+        <Footer />
+      </section>
     </PostContext.Provider>
-  )
+  );
 }
 
-function usePosts() {
-  const context = useContext(PostContext)
-  if(context === undefined) throw new Error('PostContext was used outside of the PostProvider')
-  return context
-}
-
-export {PostProvider, usePosts}
+export default App;

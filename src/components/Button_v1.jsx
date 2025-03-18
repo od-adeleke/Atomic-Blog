@@ -1,5 +1,9 @@
-const Button = ({onFakeDark, isFakeDark}) => {
-  // const {onFakeDark, isFakeDark} = useContext(PostContext)
+import {useContext} from 'react'
+
+import {PostContext} from '../App'
+
+const Button = () => {
+  const {onFakeDark, isFakeDark} = useContext(PostContext)
 
   return (
     <button

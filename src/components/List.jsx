@@ -1,4 +1,7 @@
-const List = ({ posts }) => {
+import {usePosts} from '../PostProvider'
+
+const List = () => {
+  const {posts} = usePosts()
   return (
     <ul>
       {posts.map((post, i) => (
