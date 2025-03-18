@@ -1,4 +1,5 @@
 import {useState, useContext} from  'react'
+import {PostContext} from '../App'
 
 const FormAddPost = () => {
   const {onAddPost} = useContext(PostContext)
