@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 // import {PostProvider} from './PostProvider'
+import Button from './components/Button'
 import Header from './components/Header'
 import Main from './components/Main'
 import Archive from './components/Archive'
@@ -42,6 +43,10 @@ function App() {
   function handleClearPosts() {
     setPosts([]);
   }
+
+  function handleFakeDark() {
+    setIsFakeDark((isFakeDark) => !isFakeDark)
+  }
   
   useEffect(
     function () {
@@ -57,15 +62,11 @@ function App() {
       onClearPosts: handleClearPosts,
       searchQuery,
       setSearchQuery,
+      onFakeDark: handleFakeDark,
+      isFakeDark
     }}>
       <section>
-        <button
-          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-          className="btn-fake-dark-mode"
-        >
-          {isFakeDark ? "☀️" : "🌙"}
-        </button>
-
+        <Button />
         <Header />
         <Main />
         <Archive />
