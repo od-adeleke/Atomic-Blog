@@ -8,7 +8,7 @@ function createRandomPost() {
   };
 }
 
- const PostContext = createContext()
+const PostContext = createContext()
 
 const PostProvider = ({children}) => {
   const [posts, setPosts] = useState(() =>
