@@ -1,6 +1,6 @@
 // import {useContext} from 'react'
 // import {PostContext} from '../App'
-import {usePosts} from '../PostProvider'
+import {usePosts} from '../PostProvider-memo'
 
 import Results from './Results'
 import SearchPosts from './SearchPosts'

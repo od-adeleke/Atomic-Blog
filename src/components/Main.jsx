@@ -1,13 +1,14 @@
-import FormAddPost from './FormAddPost'
-import Posts from './Posts'
+import { memo } from "react";
+import FormAddPost from "./FormAddPost";
+import Posts from "./Posts";
 
-const Main = () => {
+const Main = memo(() => {
   return (
     <main>
       <FormAddPost />
       <Posts />
     </main>
-  )
-}
+  );
+});
 
-export default Main
+export default Main;

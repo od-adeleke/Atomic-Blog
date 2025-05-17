@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
-import {PostProvider} from './PostProvider'
+import {PostProvider} from './PostProvider-memo'
 import Button from './components/Button'
 import Header from './components/Header'
 import Main from './components/Main'

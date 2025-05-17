@@ -1,4 +1,4 @@
-import {usePosts} from '../PostProvider'
+import {usePosts} from '../PostProvider-memo'
 
 const List = () => {
   const {posts} = usePosts()
